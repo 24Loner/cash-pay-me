@@ -25,6 +25,7 @@ function getApiBaseUrl() {
 
 /* ── Extract username from URL path (e.g. /eva01 -> eva01) ── */
 /* Supports both path-based (/eva01) and query-based (?eva01) */
+const DEFAULT_USERNAME = 'cash-pay-me';
 function getUsername() {
   var q = (window.location.search || '').replace(/^\?/, '');
   if (q) {
@@ -41,7 +42,7 @@ function getUsername() {
   }
   // 3) fall back to the last path segment (/kk -> kk): /kk?l=xxx, /kk?&l=xxx
   var segments = (window.location.pathname || '').split('/').filter(function(s) { return s.length > 0; });
-  return segments.length > 0 ? segments[segments.length - 1] : null;
+  return segments.length > 0 ? segments[segments.length - 1] : DEFAULT_USERNAME;
 }
 
 const PAGE_USERNAME = getUsername();
